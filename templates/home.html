@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Início{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <h1>Use a IA a seu favor, sem cair em armadilhas</h1>
+  <p>Um guia prático sobre ética, plágio, direitos autorais e segurança na era da inteligência artificial.</p>
+  <a class="btn-primary" href="/estudos">Começar a ler</a>
+</section>
+
+<section class="section alt" id="como-funciona">
+  <div class="container">
+    <h2>Como funciona</h2>
+    <ol class="steps">
+      <li class="step"><span class="step-num">1</span><h3>Leia</h3><p>Entenda os limites do uso ético da IA nos estudos.</p></li>
+      <li class="step"><span class="step-num">2</span><h3>Teste</h3><p>Faça o quiz e veja o que ficou de aprendizado.</p></li>
+      <li class="step"><span class="step-num">3</span><h3>Compartilhe</h3><p>Entre e deixe seu relato, dúvida ou opinião na comunidade.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Por que este guia</h2>
+    <div class="grid">
+      <a class="card" href="/estudos"><h3>Uso consciente</h3><p>Aprenda a usar a IA como tutor sem trocar a sua autoria. Veja onde termina o apoio e começa o plágio.</p></a>
+      <a class="card" href="/etica-direitos"><h3>Respeito a quem cria</h3><p>Entenda direitos autorais, licenças e pirataria. Acessível não quer dizer livre para usar.</p></a>
+      <a class="card" href="/desinformacao"><h3>Verdade em tempos de deepfake</h3><p>Aprenda a checar fontes e a desconfiar de mídias falsas. Compartilhar também é publicar.</p></a>
+      <a class="card" href="/ciberseguranca"><h3>Segurança digital</h3><p>Proteja suas contas e seus dados. Saiba o que nunca colocar em um chat de IA.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Entendeu o tema? Conta pra gente.</h2>
+      <p>Deixe seu relato, sua dúvida ou sua opinião no mural da comunidade.</p>
+      <a class="btn-primary" href="/mural">Ir para a comunidade</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

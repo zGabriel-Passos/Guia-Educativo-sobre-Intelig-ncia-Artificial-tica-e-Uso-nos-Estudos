@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block content %}
+<section class="section page-head">
+  <div class="container narrow center">
+    <h1>{{ titulo }}</h1>
+    <p class="lead">{{ texto }}</p>
+    <a class="btn-primary" href="/">Voltar ao início</a>
+  </div>
+</section>
+{% endblock %}

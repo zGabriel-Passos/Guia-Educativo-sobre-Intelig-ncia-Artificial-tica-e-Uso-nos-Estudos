@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Guia IA Ética{% endblock %} · Guia IA Ética</title>
+  <meta name="description" content="Guia prático sobre ética, plágio, direitos autorais, desinformação e segurança no uso de inteligência artificial nos estudos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="/">Guia IA Ética</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <nav class="nav-links" id="navLinks" aria-label="Principal">
+      {% for href, label in nav %}
+        <a href="{{ href }}" {% if request.path == href %}aria-current="page"{% endif %}>{{ label }}</a>
+      {% endfor %}
+      <a class="btn-primary btn-sm" href="/entrar">Entrar</a>
+    </nav>
+  </header>
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <footer class="footer">
+    <a class="logo" href="/">Guia IA Ética</a>
+    <p>Educação digital com consciência.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>
