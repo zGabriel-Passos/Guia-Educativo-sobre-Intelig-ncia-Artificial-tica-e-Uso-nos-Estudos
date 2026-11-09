@@ -16,7 +16,7 @@
     <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">Menu</button>
     <nav class="nav-links" id="navLinks" aria-label="Principal">
       {% for href, label in nav %}
-        <a href="{{ href }}" {% if request.path == href %}aria-current="page"{% endif %}>{{ label }}</a>
+        <a href="{{ url_for('home') }}#{{ href }}">{{ label }}</a>
       {% endfor %}
       <a class="btn-primary btn-sm" href="/entrar">Entrar</a>
     </nav>

@@ -5,7 +5,7 @@
 <section class="hero">
   <h1>Use a IA a seu favor, sem cair em armadilhas</h1>
   <p>Um guia prático sobre ética, plágio, direitos autorais e segurança na era da inteligência artificial.</p>
-  <a class="btn-primary" href="/estudos">Começar a ler</a>
+  <a class="btn-primary" href="#estudos">Começar a ler</a>
 </section>
 
 <section class="section alt" id="como-funciona">
@@ -21,15 +21,35 @@
 
 <section class="section">
   <div class="container">
-    <h2>Por que este guia</h2>
+    <h2>Explore os temas</h2>
     <div class="grid">
-      <a class="card" href="/estudos"><h3>Uso consciente</h3><p>Aprenda a usar a IA como tutor sem trocar a sua autoria. Veja onde termina o apoio e começa o plágio.</p></a>
-      <a class="card" href="/etica-direitos"><h3>Respeito a quem cria</h3><p>Entenda direitos autorais, licenças e pirataria. Acessível não quer dizer livre para usar.</p></a>
-      <a class="card" href="/desinformacao"><h3>Verdade em tempos de deepfake</h3><p>Aprenda a checar fontes e a desconfiar de mídias falsas. Compartilhar também é publicar.</p></a>
-      <a class="card" href="/ciberseguranca"><h3>Segurança digital</h3><p>Proteja suas contas e seus dados. Saiba o que nunca colocar em um chat de IA.</p></a>
+      {% for slug, pagina in paginas.items() %}
+        <a class="card" href="#{{ slug }}"><h3>{{ pagina.titulo }}</h3><p>{{ pagina.intro }}</p></a>
+      {% endfor %}
     </div>
   </div>
 </section>
+
+{% for slug, pagina in paginas.items() %}
+<section class="section guide-section {% if loop.index is even %}alt{% endif %}" id="{{ slug }}">
+  <div class="container narrow">
+    <h2>{{ pagina.titulo }}</h2>
+    <p class="lead guide-intro">{{ pagina.intro }}</p>
+    <div class="topics">
+      {% for titulo, texto in pagina.topicos %}
+      <article class="card topic-card">
+          <h3>{{ titulo }}</h3>
+          <p>{{ texto }}</p>
+        </article>
+      {% endfor %}
+    </div>
+    <aside class="atencao" role="note">
+      <h3>Ponto de atenção</h3>
+      <p>{{ pagina.atencao }}</p>
+    </aside>
+  </div>
+</section>
+{% endfor %}
 
 <section class="section">
   <div class="container">

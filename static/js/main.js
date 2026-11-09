@@ -6,4 +6,11 @@ if (btn && links) {
     const open = links.classList.toggle("open");
     btn.setAttribute("aria-expanded", String(open));
   });
+
+  links.querySelectorAll('a[href^="/#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      links.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    });
+  });
 }

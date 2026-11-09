@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, abort, render_template
+from flask import Flask, abort, redirect, render_template, url_for
 
 from data.conteudo import PAGINAS
 
@@ -15,14 +15,12 @@ app.config.update(
     SESSION_COOKIE_SAMESITE="Lax",
 )
 
-# Itens da navbar: (rota, rótulo)
+# Itens da navbar: (seção, rótulo)
 NAV = [
-    ("/estudos", "Uso nos estudos"),
-    ("/etica-direitos", "Ética e direitos"),
-    ("/desinformacao", "Deepfakes"),
-    ("/ciberseguranca", "Cibersegurança"),
-    ("/quiz", "Quiz"),
-    ("/mural", "Comunidade"),
+    ("estudos", "Uso nos estudos"),
+    ("etica-direitos", "Ética e direitos"),
+    ("desinformacao", "Deepfakes"),
+    ("ciberseguranca", "Cibersegurança"),
 ]
 
 
@@ -50,15 +48,14 @@ def security_headers(resp):
 
 @app.get("/")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", paginas=PAGINAS)
 
 
 @app.get("/<slug>")
 def conteudo(slug):
-    pagina = PAGINAS.get(slug)
-    if not pagina:
+    if slug not in PAGINAS:
         abort(404)
-    return render_template("pagina.html", pagina=pagina)
+    return redirect(url_for("home", _anchor=slug))
 
 
 @app.get("/quiz")
