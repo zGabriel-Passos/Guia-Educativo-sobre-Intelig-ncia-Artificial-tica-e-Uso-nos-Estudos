@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /relatos/{id} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.autor_uid == request.auth.uid && request.resource.data.autor_nome is string && request.resource.data.texto is string && request.resource.data.categoria in ['opiniao','duvida','aprendi','caso'] && request.resource.data.status == 'approved' && request.resource.data.curtidas == 0;
+      allow update: if request.auth != null && ((resource.data.autor_uid == request.auth.uid && request.resource.data.autor_uid == resource.data.autor_uid && request.resource.data.status == 'approved' && request.resource.data.curtidas == resource.data.curtidas) || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reacoes']));
+      allow delete: if request.auth != null && resource.data.autor_uid == request.auth.uid;
+      match /reacoes/{reactionId} {
+        allow read: if true;
+        allow create: if request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous' && reactionId == request.auth.uid + '_' + request.resource.data.tipo && request.resource.data.uid == request.auth.uid && request.resource.data.tipo in ['like','support'];
+        allow delete: if request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous' && resource.data.uid == request.auth.uid;
+      }
+    }
+  }
+}

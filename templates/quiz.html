@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block title %}Quiz{% endblock %}{% block content %}
+<section class="app-page">
+    <div class="app-head">
+        <p class="eyebrow">REVISE O QUE APRENDEU</p>
+        <h1>Um quiz rápido para pensar antes de agir.</h1>
+        <p>Responda e receba uma explicação. Sua pontuação não é coletada nesta versão.</p>
+    </div>
+    <div class="quiz-card" id="quiz">
+        <p class="eyebrow" id="quizProgress">PERGUNTA 1 DE 4</p>
+        <p class="quiz-question" id="quizQuestion"></p>
+        <div class="answers" id="quizAnswers"></div>
+        <div class="quiz-feedback" id="quizFeedback" hidden></div><button class="btn-primary" id="nextQuestion"
+            hidden>Próxima pergunta</button>
+    </div>
+</section>
+{% endblock %}

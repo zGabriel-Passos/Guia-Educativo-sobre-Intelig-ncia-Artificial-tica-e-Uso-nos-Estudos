@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Guia IA Ética{% endblock %} · Guia IA Ética</title>
-  <meta name="description" content="Guia prático sobre ética, plágio, direitos autorais, desinformação e segurança no uso de inteligência artificial nos estudos.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Entre Linha IA{% endblock %} · Entre Linha IA</title>
+    <meta name="description"
+        content="Guia prático sobre ética, plágio, direitos autorais, desinformação e segurança no uso de inteligência artificial nos estudos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
 </head>
+
 <body>
-  <header class="navbar">
-    <a class="logo" href="/">Guia IA Ética</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">Menu</button>
-    <nav class="nav-links" id="navLinks" aria-label="Principal">
-      {% for href, label in nav %}
-        <a href="{{ url_for('home') }}#{{ href }}">{{ label }}</a>
-      {% endfor %}
-      <a class="btn-primary btn-sm" href="/entrar">Entrar</a>
-    </nav>
-  </header>
-
-  <main>{% block content %}{% endblock %}</main>
-
-  <footer class="footer">
-    <a class="logo" href="/">Guia IA Ética</a>
-    <p>Educação digital com consciência.</p>
-  </footer>
-
-  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <header class="navbar"><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">IA</span> Entre Linha
+            IA</a><button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="navLinks"><span aria-hidden="true">☰</span><span>Menu</span></button>
+        <nav class="nav-links" id="navLinks" aria-label="Principal">{% for href, label in nav %}<a
+                href="{% if href in ['estudos', 'etica-direitos', 'desinformacao', 'ciberseguranca'] %}/#{{ href }}{% else %}/{{ href }}{% endif %}">{{
+                label }}</a>{% endfor %}<button class="theme-toggle" id="themeToggle" type="button"
+                aria-label="Ativar tema escuro" aria-pressed="false"><span aria-hidden="true">☀</span><span
+                    class="theme-label">Tema</span></button><button class="btn-primary btn-sm" type="button"
+                id="sessionButton">Entrar</button></nav>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="footer">
+        <div><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">IA</span> Entre Linha IA</a>
+            <p>Educação digital com consciência.</p>
+        </div>
+        <p class="footer-note">Projeto educativo · Uso responsável da tecnologia</p>
+    </footer>
+    <script type="module" src="{{ url_for('static', filename='js/firebase.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </body>
+
 </html>

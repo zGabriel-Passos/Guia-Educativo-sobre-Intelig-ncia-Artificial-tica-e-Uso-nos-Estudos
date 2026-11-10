@@ -1,64 +1,112 @@
-{% extends "base.html" %}
-{% block title %}Início{% endblock %}
-{% block content %}
-
-<section class="hero">
-  <h1>Use a IA a seu favor, sem cair em armadilhas</h1>
-  <p>Um guia prático sobre ética, plágio, direitos autorais e segurança na era da inteligência artificial.</p>
-  <a class="btn-primary" href="#estudos">Começar a ler</a>
-</section>
-
-<section class="section alt" id="como-funciona">
-  <div class="container">
-    <h2>Como funciona</h2>
-    <ol class="steps">
-      <li class="step"><span class="step-num">1</span><h3>Leia</h3><p>Entenda os limites do uso ético da IA nos estudos.</p></li>
-      <li class="step"><span class="step-num">2</span><h3>Teste</h3><p>Faça o quiz e veja o que ficou de aprendizado.</p></li>
-      <li class="step"><span class="step-num">3</span><h3>Compartilhe</h3><p>Entre e deixe seu relato, dúvida ou opinião na comunidade.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2>Explore os temas</h2>
-    <div class="grid">
-      {% for slug, pagina in paginas.items() %}
-        <a class="card" href="#{{ slug }}"><h3>{{ pagina.titulo }}</h3><p>{{ pagina.intro }}</p></a>
-      {% endfor %}
+{% extends "base.html" %}{% block title %}Início{% endblock %}{% block content %}
+<section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+        <p class="eyebrow">GUIA EDUCATIVO · ADS / UNIP</p>
+        <h1 id="hero-title">Aprenda com IA.<br><em>Continue sendo autor.</em></h1>
+        <p>Orientações práticas para estudar com inteligência artificial, preservar sua autoria e navegar no ambiente
+            digital com mais segurança.</p>
+        <div class="hero-actions"><a class="btn-primary" href="#estudos">Começar pelo guia</a><a class="btn-ghost"
+                href="/mural">Ver depoimentos</a></div>
+        <p class="trust-line"><span aria-hidden="true">✓</span> Conteúdo gratuito · leitura aberta · participação com
+            Google</p>
     </div>
-  </div>
-</section>
-
-{% for slug, pagina in paginas.items() %}
-<section class="section guide-section {% if loop.index is even %}alt{% endif %}" id="{{ slug }}">
-  <div class="container narrow">
-    <h2>{{ pagina.titulo }}</h2>
-    <p class="lead guide-intro">{{ pagina.intro }}</p>
-    <div class="topics">
-      {% for titulo, texto in pagina.topicos %}
-      <article class="card topic-card">
-          <h3>{{ titulo }}</h3>
-          <p>{{ texto }}</p>
-        </article>
-      {% endfor %}
-    </div>
-    <aside class="atencao" role="note">
-      <h3>Ponto de atenção</h3>
-      <p>{{ pagina.atencao }}</p>
+    <aside class="hero-panel" aria-label="Princípios do guia"><span class="panel-label">EM UMA FRASE</span>
+        <p>“Ferramentas apoiam o processo. Pensamento crítico é insubstituível.”</p>
+        <div class="panel-rule"></div>
+        <div class="panel-meta"><span>04 temas essenciais</span><span>01 comunidade</span></div>
     </aside>
-  </div>
 </section>
-{% endfor %}
-
-<section class="section">
-  <div class="container">
-    <div class="cta-box">
-      <h2>Entendeu o tema? Conta pra gente.</h2>
-      <p>Deixe seu relato, sua dúvida ou sua opinião no mural da comunidade.</p>
-      <a class="btn-primary" href="/mural">Ir para a comunidade</a>
+<section class="section process" id="como-funciona" aria-labelledby="processo-title">
+    <div class="container">
+        <p class="eyebrow">UM CAMINHO SIMPLES</p>
+        <h2 id="processo-title">Conhecimento para usar — não apenas consumir.</h2>
+        <ol class="steps">
+            <li class="step reveal"><span class="step-num">1</span>
+                <h3>Leia</h3>
+                <p>Entenda os limites do uso ético da IA nos estudos.</p>
+            </li>
+            <li class="step reveal"><span class="step-num">2</span>
+                <h3>Teste</h3>
+                <p>Faça o quiz e veja o que ficou de aprendizado.</p>
+            </li>
+            <li class="step reveal"><span class="step-num">3</span>
+                <h3>Compartilhe</h3>
+                <p>Entre com Google e deixe sua reflexão na comunidade.</p>
+            </li>
+        </ol>
     </div>
-  </div>
 </section>
-
+<section class="section alt" aria-labelledby="temas-title">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">CONTEÚDO DE APOIO</p>
+                <h2 id="temas-title">Quatro temas para decisões mais conscientes.</h2>
+            </div>
+            <p>Escolha um tema para começar ou percorra o guia completo logo abaixo.</p>
+        </div>
+        <div class="topic-grid">{% for slug, pagina in paginas.items() %}<a class="topic-link reveal"
+                href="#{{ slug }}"><span class="topic-number">0{{ loop.index }}</span>
+                <h3>{{ pagina.titulo }}</h3>
+                <p>{{ pagina.intro }}</p><span class="topic-arrow" aria-hidden="true">↘</span>
+            </a>{% endfor %}</div>
+    </div>
+</section>
+{% for slug, pagina in paginas.items() %}<section
+    class="section guide-section {% if loop.index is even %}alt{% endif %}" id="{{ slug }}"
+    aria-labelledby="{{ slug }}-title">
+    <div class="container narrow">
+        <p class="eyebrow">TEMA 0{{ loop.index }}</p>
+        <h2 id="{{ slug }}-title">{{ pagina.titulo }}</h2>
+        <p class="lead guide-intro">{{ pagina.intro }}</p>
+        <div class="topics">{% for titulo, texto in pagina.topicos %}<article class="card topic-card reveal">
+                <h3>{{ titulo }}</h3>
+                <p>{{ texto }}</p>
+            </article>{% endfor %}</div>
+        <aside class="atencao reveal" role="note">
+            <h3>Ponto de atenção</h3>
+            <p>{{ pagina.atencao }}</p>
+        </aside>
+        <div class="page-actions"><a class="btn-primary" href="/quiz">Fazer o quiz</a><a class="btn-ghost"
+                href="/mural">Ir ao mural</a></div>
+    </div>
+</section>{% endfor %}
+<section class="section values" aria-labelledby="valores-title">
+    <div class="container values-layout">
+        <div>
+            <p class="eyebrow">POR QUE ESTE GUIA?</p>
+            <h2 id="valores-title">Tecnologia pede repertório, cuidado e responsabilidade.</h2>
+        </div>
+        <div class="value-list">
+            <article class="reveal"><span>01</span>
+                <div>
+                    <h3>Uso consciente</h3>
+                    <p>Use a IA como tutora, sem terceirizar sua compreensão ou sua autoria.</p>
+                </div>
+            </article>
+            <article class="reveal"><span>02</span>
+                <div>
+                    <h3>Respeito a quem cria</h3>
+                    <p>Reconheça licenças, direitos autorais e os limites do reaproveitamento.</p>
+                </div>
+            </article>
+            <article class="reveal"><span>03</span>
+                <div>
+                    <h3>Informação verificada</h3>
+                    <p>Antes de confiar ou compartilhar, investigue fonte, contexto e evidências.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+<section class="section community-preview" aria-labelledby="comunidade-title">
+    <div class="container community-card">
+        <div>
+            <p class="eyebrow">COMUNIDADE</p>
+            <h2 id="comunidade-title">O que você aprendeu também pode ajudar alguém.</h2>
+            <p>Leia depoimentos e, quando quiser participar, entre com sua conta Google para deixar sua reflexão no
+                mural.</p>
+        </div><a class="btn-primary" href="/mural">Conhecer o mural <span aria-hidden="true">→</span></a>
+    </div>
+</section>
 {% endblock %}

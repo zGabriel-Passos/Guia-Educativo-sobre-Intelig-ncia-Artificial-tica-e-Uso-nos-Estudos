@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}Entrar{% endblock %}{% block content %}
+<section class="app-page">
+    <div class="auth-layout">
+        <div class="auth-card google-auth-card">
+            <p class="eyebrow">ACESSO À COMUNIDADE</p>
+            <h1>Entre para deixar seu depoimento.</h1>
+            <p class="lead-dark">A leitura é aberta. Para participar do mural, use sua conta Google: seu e-mail nunca é
+                exibido publicamente.</p><button class="google-button" id="googleLogin" type="button"><span
+                    class="google-g" aria-hidden="true">G</span>Continuar com Google</button>
+            <p class="form-message" id="authMessage" aria-live="polite"></p>
+            <p class="login-note">Ao continuar, você concorda em participar com respeito e não publicar dados pessoais.
+            </p>
+        </div>
+        <aside class="help-box">
+            <p class="eyebrow">PARTICIPAÇÃO SEGURA</p>
+            <h2>Seu e-mail não aparece no mural.</h2>
+            <p>O mural usa apenas o nome público da sua conta Google. Depoimentos passam por moderação antes de serem
+                publicados.</p>
+        </aside>
+    </div>
+</section>
+{% endblock %}

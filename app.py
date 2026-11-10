@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, abort, redirect, render_template, url_for
+from flask import Flask, abort, render_template
 
 from data.conteudo import PAGINAS
 
@@ -19,8 +19,10 @@ app.config.update(
 NAV = [
     ("estudos", "Uso nos estudos"),
     ("etica-direitos", "Ética e direitos"),
-    ("desinformacao", "Deepfakes"),
-    ("ciberseguranca", "Cibersegurança"),
+    ("desinformacao", "Desinformação"),
+    ("ciberseguranca", "Segurança"),
+    ("quiz", "Quiz"),
+    ("mural", "Comunidade"),
 ]
 
 
@@ -31,12 +33,13 @@ def inject_nav():
 
 @app.after_request
 def security_headers(resp):
-    # Ao adicionar o Firebase (fase 2), liberar os domínios dele no CSP.
     resp.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
         "style-src 'self' https://fonts.googleapis.com; "
         "font-src https://fonts.gstatic.com; "
-        "script-src 'self'; img-src 'self' data:; "
+        "script-src 'self' https://www.gstatic.com https://apis.google.com; "
+        "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; "
+        "img-src 'self' data:; frame-src https://*.firebaseapp.com https://accounts.google.com; "
         "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
     )
     resp.headers["X-Content-Type-Options"] = "nosniff"
@@ -55,25 +58,22 @@ def home():
 def conteudo(slug):
     if slug not in PAGINAS:
         abort(404)
-    return redirect(url_for("home", _anchor=slug))
+    return render_template("pagina.html", pagina=PAGINAS[slug])
 
 
 @app.get("/quiz")
 def quiz():
-    return render_template("em_breve.html", titulo="Quiz",
-                           texto="O quiz chega na próxima fase. Enquanto isso, leia os guias.")
+    return render_template("quiz.html")
 
 
 @app.get("/mural")
 def mural():
-    return render_template("em_breve.html", titulo="Comunidade",
-                           texto="O mural chega na próxima fase, junto com o login.")
+    return render_template("mural.html")
 
 
 @app.get("/entrar")
 def entrar():
-    return render_template("em_breve.html", titulo="Entrar",
-                           texto="O login com Firebase Auth chega na próxima fase.")
+    return render_template("entrar.html")
 
 
 @app.errorhandler(404)

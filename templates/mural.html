@@ -1,0 +1,47 @@
+{% extends "base.html" %}{% block title %}Comunidade{% endblock %}{% block content %}
+<section class="app-page">
+    <div class="app-head">
+        <p class="eyebrow">MURAL DA COMUNIDADE</p>
+        <h1>Reflexões que deixam o aprendizado mais humano.</h1>
+        <p>Leia experiências e dúvidas da comunidade. Para publicar seu depoimento, entre com uma conta.</p>
+    </div>
+    <div class="mural-layout">
+        <aside class="mural-intro">
+            <p class="eyebrow">ANTES DE PUBLICAR</p>
+            <h2>Um espaço de escuta e respeito.</h2>
+            <p>Depoimentos são enviados para moderação antes de aparecerem publicamente.</p>
+            <ul class="rules">
+                <li>Não exponha dados pessoais.</li>
+                <li>Não identifique terceiros em relatos.</li>
+                <li>Não compartilhe links suspeitos ou conteúdo ilegal.</li>
+                <li>Respeite experiências diferentes da sua.</li>
+            </ul>
+        </aside>
+        <div>
+            <form class="mural-form" id="postForm" hidden>
+                <p class="eyebrow">SEU DEPOIMENTO</p>
+                <h2>Compartilhe sua reflexão</h2>
+                <div class="field"><label for="postCategory">Categoria</label><select id="postCategory" required>
+                        <option value="opiniao">Opinião</option>
+                        <option value="duvida">Dúvida</option>
+                        <option value="aprendi">O que aprendi</option>
+                        <option value="caso">Caso vivenciado</option>
+                    </select></div>
+                <div class="field"><label for="postText">Mensagem</label><textarea id="postText" required
+                        placeholder="Escreva seu depoimento."></textarea></div>
+                <p class="form-message" id="postMessage" aria-live="polite"></p><button class="btn-primary"
+                    type="submit">Enviar para moderação</button>
+            </form>
+            <div class="auth-required" id="authRequired">
+                <div class="empty-state">
+                    <p>Quer compartilhar uma experiência ou dúvida?</p><a class="btn-primary" href="/entrar">Entrar para
+                        publicar</a>
+                </div>
+            </div>
+            <div class="post-list" id="postList" aria-live="polite">
+                <div class="empty-state">Carregando depoimentos…</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
